@@ -21,6 +21,11 @@ const lname = computed(() => {
 const currentYear = new Date().getFullYear()
 
 const orgId = import.meta.env.VITE_ORGANIZATION_ID as string
+
+const GITHUB_ORG = 'qrati-labs'
+const REPO = 'qrati-connect-vue-example'
+const repoUrl = `https://github.com/${GITHUB_ORG}/${REPO}`
+const vscodeUrl = `https://vscode.dev/github/${GITHUB_ORG}/${REPO}`
 </script>
 
 
@@ -31,17 +36,17 @@ const orgId = import.meta.env.VITE_ORGANIZATION_ID as string
       <p class="hero-kicker">Qrati Connect Demo</p>
       <h1>
         <a href="https://qrati.com" target="_blank" rel="noopener noreferrer">Qrati</a>
-        Connect inside an Angular host site
+        Connect inside a Vue host site
       </h1>
       <p class="hero-copy">
         This example shows how to drop
         <a href="https://qrati.com" target="_blank" rel="noopener noreferrer">Qrati</a>
-        Connect into an Angular application with a host-controlled theme, clean link-outs, and a
-        polished wrapper around the widget.
+        Connect into a Vue application using the framework-agnostic web component, with a
+        host-controlled theme, a demo login for custom-auth orgs, and a polished wrapper around the widget.
       </p>
 
       <div class="action-pills" aria-label="Example links">
-        <a href="repoUrl" target="_blank" rel="noopener noreferrer">
+        <a :href="repoUrl" target="_blank" rel="noopener noreferrer">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
             <path
               fill="currentColor"
@@ -50,7 +55,7 @@ const orgId = import.meta.env.VITE_ORGANIZATION_ID as string
           </svg>
           <span>View on GitHub</span>
         </a>
-        <a href="vscodeUrl" target="_blank" rel="noopener noreferrer">
+        <a :href="vscodeUrl" target="_blank" rel="noopener noreferrer">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
             <path
               fill="currentColor"
@@ -69,7 +74,7 @@ const orgId = import.meta.env.VITE_ORGANIZATION_ID as string
             id="qrati-connect-main"
             :organization-id="orgId"
             :theme="theme.theme"
-            :user-id="user.user?.userId ?? ''"
+            :uid="user.user?.userId ?? ''"
             :fname="fname"
             :lname="lname"
             router="hash"
