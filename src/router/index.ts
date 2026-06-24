@@ -7,7 +7,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', 
-      component: ConnectPage },
+      component: ConnectPage, meta: { requiresAuth: true } },
     { path: '/login', component: LoginPage }
   ],
 })
