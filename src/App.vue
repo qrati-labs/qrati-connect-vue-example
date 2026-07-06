@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import TopBar from './components/TopBar.vue'
+import ConnectPage from './pages/ConnectPage.vue'
 </script>
 
 <template>
   <TopBar />
-  <router-view />
+  <ConnectPage />
 </template>
 
 <style>

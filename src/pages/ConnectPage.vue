@@ -1,22 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useAuth } from '../composables/useAuth'
 import { useTheme } from '../composables/useTheme'
 
-const { user } = useAuth()
 const { theme } = useTheme()
-
-const fname = computed(() => {
-  if (!user.user) return ''
-  const parts = user.user.name.trim().split(' ')
-  return parts[0] || ''
-})
-
-const lname = computed(() => {
-  if (!user.user) return ''
-  const parts = user.user.name.trim().split(' ')
-  return parts.slice(1).join(' ') || ''
-})
 
 const currentYear = new Date().getFullYear()
 
@@ -42,7 +27,7 @@ const vscodeUrl = `https://vscode.dev/github/${GITHUB_ORG}/${REPO}`
         This example shows how to drop
         <a href="https://qrati.com" target="_blank" rel="noopener noreferrer">Qrati</a>
         Connect into a Vue application using the framework-agnostic web component, with a
-        host-controlled theme, a demo login for custom-auth orgs, and a polished wrapper around the widget.
+        host-controlled theme and a polished wrapper around the widget.
       </p>
 
       <div class="action-pills" aria-label="Example links">
@@ -68,19 +53,14 @@ const vscodeUrl = `https://vscode.dev/github/${GITHUB_ORG}/${REPO}`
     </header>
 
     <main class="content-shell">
-      <!-- <section class="widget-frame"> -->
-        <div class="connect-page">
-          <qrati-connect
-            id="qrati-connect-main"
-            :organization-id="orgId"
-            :theme="theme.theme"
-            :uid="user.user?.userId ?? ''"
-            :fname="fname"
-            :lname="lname"
-            router="hash"
-          />
-  </div>
-      <!-- </section> -->
+      <div class="widget-frame">
+        <qrati-connect
+          id="qrati-connect-main"
+          :organization-id="orgId"
+          :theme="theme.theme"
+          router="hash"
+        />
+      </div>
     </main>
 
     <footer class="footer">
@@ -118,15 +98,6 @@ const vscodeUrl = `https://vscode.dev/github/${GITHUB_ORG}/${REPO}`
 </template>
 
 <style scoped>
-.connect-page {
-  min-height: calc(100vh - 60px);
-  display: flex;
-  flex-direction: column;
-  padding: 0.75rem;
-  border: 2px solid rgba(255, 72, 0, 0.28);
-  border-radius: 2rem;
-  background: var(--widget-shell-bg);
-}
 :host {
   display: block;
   color: var(--page-text);
