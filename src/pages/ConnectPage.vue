@@ -1,46 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { useTheme } from '../composables/useTheme';
 import { ORGANIZATION_ID, GITHUB_ORG, REPO } from '../config';
-import { loadUser, login, logout, type AuthUser } from '../lib/auth';
 import { showCookiePreferences } from '../lib/cookieConsent';
 
 const { theme, toggleTheme } = useTheme();
-
-const user = ref<AuthUser | null>(loadUser());
-const name = ref('');
-const email = ref('');
-const loading = ref(false);
-const error = ref('');
 
 const currentYear = new Date().getFullYear();
 const repoUrl = `https://github.com/${GITHUB_ORG}/${REPO}`;
 const vscodeUrl = `https://vscode.dev/github/${GITHUB_ORG}/${REPO}`;
 const npmUrl = 'https://www.npmjs.com/package/@qratilabs/qrati-connect';
-
-const handleSubmit = async () => {
-  if (!email.value.trim() || !name.value.trim()) {
-    error.value = 'Email and name are required.';
-    return;
-  }
-  loading.value = true;
-  error.value = '';
-  try {
-    const loggedIn = await login(email.value.trim(), name.value.trim());
-    user.value = loggedIn;
-  } catch {
-    error.value = 'Login failed. Try again.';
-  } finally {
-    loading.value = false;
-  }
-};
-
-const handleLogout = () => {
-  logout();
-  user.value = null;
-  email.value = '';
-  name.value = '';
-};
 
 const handleCookiePreferences = () => {
   if (typeof window !== 'undefined' && window.showCookiePreferences) {
@@ -72,8 +40,7 @@ const handleCookiePreferences = () => {
           <p class="hero-copy">
             A framework-agnostic web component for Vue to embed live event photo galleries with guest
             uploads, full-screen lightbox, emoji reactions, and contest leaderboards. This example
-            showcases <strong>custom host auth</strong> with a thin login layer and
-            <strong>custom storage</strong> (direct browser-to-bucket S3/R2 uploads with bucket CORS).
+            showcases <strong>custom cloud storage</strong> (direct browser-to-bucket S3/R2 uploads with bucket CORS).
           </p>
 
           <div class="action-pills" aria-label="Example links">
@@ -105,63 +72,15 @@ const handleCookiePreferences = () => {
         </header>
 
         <main class="content-shell">
-          <template v-if="user">
-            <div class="session-bar">
-              <span>
-                Signed in as <strong>{{ user.fname }} {{ user.lname }}</strong> ({{ user.email }})
-              </span>
-              <button class="btn-ghost" @click="handleLogout">
-                Log out
-              </button>
-            </div>
-            <section class="widget-frame" aria-label="Interactive Vue Event Gallery">
-              <h2 class="sr-only">Live Event Photo Gallery Component</h2>
-              <qrati-connect
-                id="qrati-connect-main"
-                :organization-id="ORGANIZATION_ID"
-                :uid="user.userId"
-                :fname="user.fname"
-                :lname="user.lname"
-                :theme="theme.theme"
-                router="hash"
-              />
-            </section>
-          </template>
-
-          <template v-else>
-            <div class="login-card">
-              <h2>Demo sign in</h2>
-              <p class="sub">
-                Identify yourself to test custom host authentication with a dedicated user ID.
-              </p>
-              <form class="login-form" @submit.prevent="handleSubmit">
-                <div class="field">
-                  <label for="name">Full name</label>
-                  <input
-                    id="name"
-                    type="text"
-                    v-model="name"
-                    placeholder="John Doe"
-                    autocomplete="name"
-                  />
-                </div>
-                <div class="field">
-                  <label for="email">Email</label>
-                  <input
-                    id="email"
-                    type="email"
-                    v-model="email"
-                    placeholder="john@example.com"
-                    autocomplete="email"
-                  />
-                </div>
-                <p v-if="error" class="error">{{ error }}</p>
-                <button class="btn-primary" type="submit" :disabled="loading">
-                  {{ loading ? 'Signing in…' : 'Sign in & load gallery' }}
-                </button>
-              </form>
-            </div>
-          </template>
+          <section class="widget-frame" aria-label="Interactive Vue Event Gallery">
+            <h2 class="sr-only">Live Event Photo Gallery Component</h2>
+            <qrati-connect
+              id="qrati-connect-main"
+              :organization-id="ORGANIZATION_ID"
+              :theme="theme.theme"
+              router="hash"
+            />
+          </section>
 
           <!-- SEO Features Section -->
           <section class="seo-section" aria-labelledby="features-heading">
@@ -183,16 +102,6 @@ const handleCookiePreferences = () => {
                 <p>
                   Responsive masonry grid layout, blurhash loading placeholders, and full-screen
                   lightbox with keyboard navigation for stunning visual presentation.
-                </p>
-              </article>
-
-              <article class="seo-feature-card">
-                <div class="seo-feature-icon" aria-hidden="true">
-                  🔐
-                </div>
-                <h3>Custom Host Auth</h3>
-                <p>
-                  Pass host-authenticated attendee profiles directly using <code style="color: var(--brand-accent)">:uid</code>, <code style="color: var(--brand-accent)">:fname</code>, and <code style="color: var(--brand-accent)">:lname</code> props without third-party redirects.
                 </p>
               </article>
 
@@ -268,12 +177,9 @@ const theme = 'light'; // 'light' | 'dark'
 &lt;/script&gt;
 
 &lt;template&gt;
-  &lt;!-- 3. Render with optional Custom Auth props (:uid, :fname, :lname) --&gt;
+  &lt;!-- 3. Render the custom element --&gt;
   &lt;qrati-connect
     :organization-id="orgId"
-    :uid="user?.userId"
-    :fname="user?.fname"
-    :lname="user?.lname"
     :theme="theme"
     router="hash"
   /&gt;
@@ -304,16 +210,6 @@ const theme = 'light'; // 'light' | 'dark'
 
               <details class="faq-item">
                 <summary class="faq-question">
-                  <span>How does Custom Auth work with Qrati Connect in Vue?</span>
-                  <span class="faq-icon" aria-hidden="true">+</span>
-                </summary>
-                <div class="faq-answer">
-                  When your organization is configured for Custom Auth on the Qrati dashboard, the host application provides attendee identities directly. Pass <code style="color: var(--brand-accent)">:uid="user.userId"</code>, <code style="color: var(--brand-accent)">:fname="user.fname"</code>, and <code style="color: var(--brand-accent)">:lname="user.lname"</code> attributes to <code style="color: var(--brand-accent)">&lt;qrati-connect&gt;</code>. The widget uses these credentials to attribute photo uploads, votes, and reactions to your known user.
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary class="faq-question">
                   <span>How does Custom Cloud Storage work with Qrati Connect?</span>
                   <span class="faq-icon" aria-hidden="true">+</span>
                 </summary>
@@ -338,148 +234,45 @@ const theme = 'light'; // 'light' | 'dark'
                   <span class="faq-icon" aria-hidden="true">+</span>
                 </summary>
                 <div class="faq-answer">
-                  Yes. The component accepts a <code style="color: var(--brand-accent)">:theme</code> attribute (<code style="color: var(--brand-accent)">&apos;light&apos;</code> or <code style="color: var(--brand-accent)">&apos;dark&apos;</code>), enabling seamless synchronization with your application&apos;s theme provider or system color preferences.
+                  Yes. Bind the <code style="color: var(--brand-accent)">:theme</code> attribute to <code style="color: var(--brand-accent)">'light'</code> or <code style="color: var(--brand-accent)">'dark'</code>. The component dynamically updates all background, text, card, and modal styles to match your host site's color scheme.
                 </div>
               </details>
 
               <details class="faq-item">
                 <summary class="faq-question">
-                  <span>Can I run photo contests and display rankings in the Vue gallery?</span>
+                  <span>Is Qrati Connect compatible with Vue 3 and Vite?</span>
                   <span class="faq-icon" aria-hidden="true">+</span>
                 </summary>
                 <div class="faq-answer">
-                  Yes. Qrati Connect supports contest mode, star ratings, emoji reactions, and ranked leaderboards configured directly from your Qrati organization dashboard.
+                  Yes. The package provides a standard Custom Element (Web Component) that works natively in Vue 3, Vite, Nuxt, and any other frontend framework or vanilla JavaScript project.
                 </div>
               </details>
-            </div>
-          </section>
-
-          <!-- Event Hosting & Integration CTA Section -->
-          <section class="seo-section seo-cta-section" aria-labelledby="cta-heading">
-            <div class="seo-cta-card">
-              <div class="seo-cta-content">
-                <span class="seo-kicker">Host on Qrati &middot; Embed Anywhere</span>
-                <h2 id="cta-heading">
-                  Host Your Event on Qrati.{' '}
-                  <span class="cta-highlight">Stream the Live Gallery on Your Website.</span>
-                </h2>
-                <p class="seo-cta-copy">
-                  Planning a conference, festival, wedding, summit, or private celebration?
-                  Host your event on Qrati to capture every attendee memory with instant QR uploads,
-                  built-in moderation, and live photo contests. Then drop Qrati Connect into your own
-                  website so visitors and guests engage in real time directly on your domain.
-                </p>
-
-                <div class="seo-cta-steps" aria-label="How it works">
-                  <div class="cta-step">
-                    <span class="cta-step-num">1</span>
-                    <div>
-                      <strong>Host on Qrati</strong>
-                      <p>
-                        Create your event space on Qrati with QR codes, upload permissions, and
-                        branding.
-                      </p>
-                    </div>
-                  </div>
-                  <div class="cta-step">
-                    <span class="cta-step-num">2</span>
-                    <div>
-                      <strong>Connect to Your Site</strong>
-                      <p>
-                        Embed the custom element or script tag into your existing website in
-                        minutes.
-                      </p>
-                    </div>
-                  </div>
-                  <div class="cta-step">
-                    <span class="cta-step-num">3</span>
-                    <div>
-                      <strong>Engage Your Community</strong>
-                      <p>
-                        Watch guest photos, reactions, and contest leaderboards sync live on your domain.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="seo-cta-actions">
-                  <a
-                    href="https://qrati.com/contact-us"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn-cta-primary"
-                  >
-                    <span>Contact Us</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              </div>
             </div>
           </section>
         </main>
 
         <footer class="footer">
-          <div class="footer-brand">
-            <img
-              src="https://assets.qrati.com/images/qrati-connect-logo-square.png"
-              alt="Qrati Connect logo"
-              referrerpolicy="no-referrer"
-            />
-            <div>
-              <span class="footer-title">
-                <span>Qrati</span> Connect
-              </span>
-              <p>Elevate your event experience.</p>
-            </div>
+          <p>
+            Powered by
+            <a href="https://qrati.com" target="_blank" rel="noopener noreferrer">Qrati</a>
+            · Embeddable live event photo galleries for Vue applications.
+          </p>
+          <div class="footer-links">
+            <a href="https://qrati.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+            <span class="footer-sep" aria-hidden="true">·</span>
+            <a href="https://qrati.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+            <span class="footer-sep" aria-hidden="true">·</span>
+            <button
+              type="button"
+              class="footer-cookie-btn"
+              @click="handleCookiePreferences"
+            >
+              Cookie Preferences
+            </button>
           </div>
-          <div class="footer-meta">
-            <nav aria-label="Footer navigation">
-              <a href="https://qrati.com" target="_blank" rel="noopener noreferrer">
-                qrati.com
-              </a>
-              <a
-                href="https://www.npmjs.com/package/@qratilabs/qrati-connect"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                npm
-              </a>
-              <a
-                :href="`https://github.com/${GITHUB_ORG}`"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub
-              </a>
-              <a href="https://qrati.com/pricing" target="_blank" rel="noopener noreferrer">
-                Pricing
-              </a>
-              <button
-                type="button"
-                class="footer-cookie-btn"
-                data-cc="show-preferencesModal"
-                @click="handleCookiePreferences"
-              >
-                Cookie Preferences
-              </button>
-            </nav>
-            <p class="footer-note">© {{ currentYear }} Qrati Labs. All rights reserved.</p>
-          </div>
+          <p class="footer-copyright">
+            © {{ currentYear }} Qrati Labs. All rights reserved.
+          </p>
         </footer>
       </div>
     </div>

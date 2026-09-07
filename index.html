@@ -14,7 +14,7 @@
         />
         <meta
             name="description"
-            content="Embed a live, interactive event photo gallery in Vue with guest uploads, lightbox, emoji reactions, custom auth, and contest leaderboards using @qratilabs/qrati-connect."
+            content="Embed a live, interactive event photo gallery in Vue with guest uploads, lightbox, emoji reactions, custom cloud storage, and contest leaderboards using @qratilabs/qrati-connect."
         />
         <meta
             name="keywords"
@@ -67,7 +67,7 @@
         />
         <meta
             property="og:description"
-            content="Embed a live, interactive event photo gallery in Vue with guest uploads, lightbox, emoji reactions, custom auth, and contest leaderboards using @qratilabs/qrati-connect."
+            content="Embed a live, interactive event photo gallery in Vue with guest uploads, lightbox, emoji reactions, custom cloud storage, and contest leaderboards using @qratilabs/qrati-connect."
         />
         <meta
             property="og:image"
@@ -95,7 +95,7 @@
         />
         <meta
             name="twitter:description"
-            content="Embed a live, interactive event photo gallery in Vue with guest uploads, lightbox, emoji reactions, custom auth, and contest leaderboards using @qratilabs/qrati-connect."
+            content="Embed a live, interactive event photo gallery in Vue with guest uploads, lightbox, emoji reactions, custom cloud storage, and contest leaderboards using @qratilabs/qrati-connect."
         />
         <meta
             name="twitter:image"
@@ -163,7 +163,7 @@
                     "@id": "https://qrati.com/connect/vue-example#webpage",
                     "url": "https://qrati.com/connect/vue-example",
                     "name": "Embeddable Event Photo Gallery Vue Component | Qrati Connect",
-                    "description": "Embed a live, interactive event photo gallery in Vue with guest uploads, lightbox, emoji reactions, custom auth, and contest leaderboards using @qratilabs/qrati-connect.",
+                    "description": "Embed a live, interactive event photo gallery in Vue with guest uploads, lightbox, emoji reactions, custom cloud storage, and contest leaderboards using @qratilabs/qrati-connect.",
                     "isPartOf": { "@id": "https://qrati.com/#website" },
                     "breadcrumb": { "@id": "https://qrati.com/connect/vue-example#breadcrumb" },
                     "about": { "@id": "https://qrati.com/connect/vue-example#software" },
@@ -186,12 +186,11 @@
                     "codeRepository": "https://github.com/qrati-labs/qrati-connect-vue-example",
                     "downloadUrl": "https://www.npmjs.com/package/@qratilabs/qrati-connect",
                     "url": "https://qrati.com/connect/vue-example",
-                    "description": "A Vue-compatible web component for embedding live event photo galleries, guest media uploads, custom auth, and contest leaderboards.",
+                    "description": "A Vue-compatible web component for embedding live event photo galleries, guest media uploads, custom cloud storage, and contest leaderboards.",
                     "publisher": { "@id": "https://qrati.com/#organization" },
                     "featureList": [
                         "Framework-agnostic web component integration in Vue 3",
                         "Direct guest photo and video uploads",
-                        "Custom host authentication (uid, fname, lname props)",
                         "Custom cloud storage (AWS S3 / Cloudflare R2 presigned uploads)",
                         "Client-side image compression and HEIC conversion",
                         "Full-screen responsive lightbox",
@@ -210,14 +209,6 @@
                             "acceptedAnswer": {
                                 "@type": "Answer",
                                 "text": "Include the Qrati Connect element script and configure isCustomElement in vite.config.ts. Then drop <qrati-connect :organization-id=\"orgId\" :theme=\"theme\" router=\"hash\" /> directly into any Vue template."
-                            }
-                        },
-                        {
-                            "@type": "Question",
-                            "name": "How does Custom Auth work with Qrati Connect in Vue?",
-                            "acceptedAnswer": {
-                                "@type": "Answer",
-                                "text": "When your organization is configured for Custom Auth on the Qrati dashboard, pass host user attributes using :uid=\"user.userId\" :fname=\"user.fname\" :lname=\"user.lname\" directly to <qrati-connect>."
                             }
                         },
                         {
