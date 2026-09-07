@@ -1,14 +1,264 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Qrati Connect</title>
-    <script type="module" src="%VITE_CDN_URL%"></script>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+    <head>
+        <!-- %GTM_HEAD% -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- Primary SEO Meta Tags -->
+        <title>Embeddable Event Photo Gallery Vue Component | Qrati Connect</title>
+        <meta
+            name="title"
+            content="Embeddable Event Photo Gallery Vue Component | Qrati Connect"
+        />
+        <meta
+            name="description"
+            content="Embed a live, interactive event photo gallery in Vue with guest uploads, lightbox, emoji reactions, custom auth, and contest leaderboards using @qratilabs/qrati-connect."
+        />
+        <meta
+            name="keywords"
+            content="embeddable event photo gallery, vue photo gallery component, live event photo wall, guest photo uploads, vue ugc gallery, event photo sharing widget, photo contest leaderboard, qrati connect vue, @qratilabs/qrati-connect"
+        />
+        <meta name="author" content="Qrati Labs" />
+        <meta
+            name="robots"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+        <meta
+            name="googlebot"
+            content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+        />
+        <link rel="canonical" href="https://qrati.com/connect/vue-example" />
+
+        <!-- Theme & App Meta -->
+        <meta name="theme-color" content="#ff4800" />
+        <meta name="msapplication-TileColor" content="#ff4800" />
+        <meta name="application-name" content="Qrati Connect Vue" />
+        <meta name="apple-mobile-web-app-title" content="Qrati Connect" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="format-detection" content="telephone=no" />
+
+        <!-- Favicons & App Icons -->
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/qrati-connect-logo-square.png" />
+        <link rel="apple-touch-icon" href="/qrati-connect-logo-square.png" />
+
+        <!-- Preconnect & DNS Prefetch -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="dns-prefetch" href="https://assets.qrati.com" />
+        <link rel="dns-prefetch" href="https://api.qrati.com" />
+
+        <!-- Open Graph / Facebook / LinkedIn / Slack -->
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Qrati Connect" />
+        <meta property="og:url" content="https://qrati.com/connect/vue-example" />
+        <meta
+            property="og:title"
+            content="Embeddable Event Photo Gallery Vue Component | Qrati Connect"
+        />
+        <meta
+            property="og:description"
+            content="Embed a live, interactive event photo gallery in Vue with guest uploads, lightbox, emoji reactions, custom auth, and contest leaderboards using @qratilabs/qrati-connect."
+        />
+        <meta
+            property="og:image"
+            content="https://qrati.com/connect/vue-example/qrati-connect-og.png"
+        />
+        <meta
+            property="og:image:secure_url"
+            content="https://qrati.com/connect/vue-example/qrati-connect-og.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+        <meta
+            property="og:image:alt"
+            content="Qrati Connect Vue Component — Live Event Photo Gallery Embed"
+        />
+
+        <!-- Twitter Cards -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@qratilabs" />
+        <meta name="twitter:creator" content="@qratilabs" />
+        <meta
+            name="twitter:title"
+            content="Embeddable Event Photo Gallery Vue Component | Qrati Connect"
+        />
+        <meta
+            name="twitter:description"
+            content="Embed a live, interactive event photo gallery in Vue with guest uploads, lightbox, emoji reactions, custom auth, and contest leaderboards using @qratilabs/qrati-connect."
+        />
+        <meta
+            name="twitter:image"
+            content="https://qrati.com/connect/vue-example/qrati-connect-og.png"
+        />
+        <meta
+            name="twitter:image:alt"
+            content="Qrati Connect Vue Component Preview"
+        />
+
+        <!-- Structured Data / JSON-LD -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Organization",
+                    "@id": "https://qrati.com/#organization",
+                    "name": "Qrati Labs, LLC",
+                    "url": "https://qrati.com/",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://qrati.com/connect/vue-example/qrati-connect-logo-square.png",
+                        "width": 128,
+                        "height": 128
+                    },
+                    "sameAs": [
+                        "https://github.com/qrati-labs",
+                        "https://www.linkedin.com/company/qrati"
+                    ]
+                },
+                {
+                    "@type": "WebSite",
+                    "@id": "https://qrati.com/#website",
+                    "url": "https://qrati.com/",
+                    "name": "Qrati",
+                    "publisher": { "@id": "https://qrati.com/#organization" }
+                },
+                {
+                    "@type": "BreadcrumbList",
+                    "@id": "https://qrati.com/connect/vue-example#breadcrumb",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Home",
+                            "item": "https://qrati.com/"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "Connect",
+                            "item": "https://qrati.com/connect"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 3,
+                            "name": "Vue Example",
+                            "item": "https://qrati.com/connect/vue-example"
+                        }
+                    ]
+                },
+                {
+                    "@type": "WebPage",
+                    "@id": "https://qrati.com/connect/vue-example#webpage",
+                    "url": "https://qrati.com/connect/vue-example",
+                    "name": "Embeddable Event Photo Gallery Vue Component | Qrati Connect",
+                    "description": "Embed a live, interactive event photo gallery in Vue with guest uploads, lightbox, emoji reactions, custom auth, and contest leaderboards using @qratilabs/qrati-connect.",
+                    "isPartOf": { "@id": "https://qrati.com/#website" },
+                    "breadcrumb": { "@id": "https://qrati.com/connect/vue-example#breadcrumb" },
+                    "about": { "@id": "https://qrati.com/connect/vue-example#software" },
+                    "primaryImageOfPage": {
+                        "@type": "ImageObject",
+                        "url": "https://qrati.com/connect/vue-example/qrati-connect-og.png",
+                        "width": 1200,
+                        "height": 630
+                    },
+                    "inLanguage": "en"
+                },
+                {
+                    "@type": ["SoftwareApplication", "SoftwareSourceCode"],
+                    "@id": "https://qrati.com/connect/vue-example#software",
+                    "name": "Qrati Connect Vue Component",
+                    "applicationCategory": "DeveloperApplication",
+                    "operatingSystem": "Web",
+                    "programmingLanguage": "TypeScript",
+                    "runtimePlatform": "Vue 3",
+                    "codeRepository": "https://github.com/qrati-labs/qrati-connect-vue-example",
+                    "downloadUrl": "https://www.npmjs.com/package/@qratilabs/qrati-connect",
+                    "url": "https://qrati.com/connect/vue-example",
+                    "description": "A Vue-compatible web component for embedding live event photo galleries, guest media uploads, custom auth, and contest leaderboards.",
+                    "publisher": { "@id": "https://qrati.com/#organization" },
+                    "featureList": [
+                        "Framework-agnostic web component integration in Vue 3",
+                        "Direct guest photo and video uploads",
+                        "Custom host authentication (uid, fname, lname props)",
+                        "Custom cloud storage (AWS S3 / Cloudflare R2 presigned uploads)",
+                        "Client-side image compression and HEIC conversion",
+                        "Full-screen responsive lightbox",
+                        "Emoji reactions with real-time feedback",
+                        "Contest leaderboards and star ratings",
+                        "Host-controlled theme synchronization (light/dark)"
+                    ]
+                },
+                {
+                    "@type": "FAQPage",
+                    "@id": "https://qrati.com/connect/vue-example#faq",
+                    "mainEntity": [
+                        {
+                            "@type": "Question",
+                            "name": "How do I embed an event photo gallery in Vue?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Include the Qrati Connect element script and configure isCustomElement in vite.config.ts. Then drop <qrati-connect :organization-id=\"orgId\" :theme=\"theme\" router=\"hash\" /> directly into any Vue template."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "How does Custom Auth work with Qrati Connect in Vue?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "When your organization is configured for Custom Auth on the Qrati dashboard, pass host user attributes using :uid=\"user.userId\" :fname=\"user.fname\" :lname=\"user.lname\" directly to <qrati-connect>."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "How does Custom Cloud Storage work with Qrati Connect?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Organizations can connect their own AWS S3 or Cloudflare R2 bucket. Uploads stream directly from the browser to your bucket via presigned PUT URLs, bypassing the host application server."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "Can event attendees upload photos directly through the Vue gallery?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Yes. When media uploads are enabled in your Qrati organization settings, attendees can upload photos and videos directly from mobile or desktop with optional client-side compression and HEIC conversion."
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+        </script>
+
+        <!-- Pre-hydration Theme Initialization to prevent flash -->
+        <script>
+            (function() {
+                try {
+                    var t = localStorage.getItem('qc-theme') ||
+                        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                    document.documentElement.setAttribute('data-theme', t);
+                } catch (e) {}
+            })();
+        </script>
+
+        <!-- Qrati Connect Web Component Bundle -->
+        <script type="module" src="%VITE_CDN_URL%"></script>
+    </head>
+    <body>
+        <!-- %GTM_BODY% -->
+        <div id="app"></div>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
 </html>
