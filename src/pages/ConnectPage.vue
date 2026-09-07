@@ -255,7 +255,7 @@ const theme = 'light'; // 'light' | 'dark'
               <div class="seo-cta-content">
                 <span class="seo-kicker">Host on Qrati &middot; Embed Anywhere</span>
                 <h2 id="cta-heading">
-                  Host Your Event on Qrati.{' '}
+                  Host Your Event on Qrati.
                   <span class="cta-highlight">Stream the Live Gallery on Your Website.</span>
                 </h2>
                 <p class="seo-cta-copy">
@@ -309,7 +309,7 @@ const theme = 'light'; // 'light' | 'dark'
 
         <footer class="footer">
           <div class="footer-brand">
-            <img src="https://assets.qrati.com/images/qrati-connect-logo-square.png" alt="Qrati Connect logo" referrerPolicy="no-referrer" />
+            <img src="https://assets.qrati.com/images/qrati-connect-logo-square.png" alt="Qrati Connect logo" referrerpolicy="no-referrer" />
             <div>
               <span class="footer-title"><span>Qrati</span> Connect</span>
               <p>Elevate your event experience.</p>
