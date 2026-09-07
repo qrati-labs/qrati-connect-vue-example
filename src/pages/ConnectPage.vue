@@ -249,30 +249,89 @@ const theme = 'light'; // 'light' | 'dark'
               </details>
             </div>
           </section>
+          <!-- Event Hosting & Integration CTA Section -->
+          <section class="seo-section seo-cta-section" aria-labelledby="cta-heading">
+            <div class="seo-cta-card">
+              <div class="seo-cta-content">
+                <span class="seo-kicker">Host on Qrati &middot; Embed Anywhere</span>
+                <h2 id="cta-heading">
+                  Host Your Event on Qrati.{' '}
+                  <span class="cta-highlight">Stream the Live Gallery on Your Website.</span>
+                </h2>
+                <p class="seo-cta-copy">
+                  Planning a conference, festival, wedding, summit, or private celebration?
+                  Host your event on Qrati to capture every attendee memory with instant QR uploads,
+                  built-in moderation, and live photo contests. Then drop Qrati Connect into your own
+                  website so visitors and guests engage in real time directly on your domain.
+                </p>
+
+                <div class="seo-cta-steps" aria-label="How it works">
+                  <div class="cta-step">
+                    <span class="cta-step-num">1</span>
+                    <div>
+                      <strong>Host on Qrati</strong>
+                      <p>Create your event space on Qrati with QR codes, upload permissions, and branding.</p>
+                    </div>
+                  </div>
+                  <div class="cta-step">
+                    <span class="cta-step-num">2</span>
+                    <div>
+                      <strong>Connect to Your Site</strong>
+                      <p>Embed the Vue component or script tag into your existing website in minutes.</p>
+                    </div>
+                  </div>
+                  <div class="cta-step">
+                    <span class="cta-step-num">3</span>
+                    <div>
+                      <strong>Engage Your Community</strong>
+                      <p>Watch guest photos, reactions, and contest leaderboards sync live on your domain.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="seo-cta-actions">
+                  <a
+                    href="https://qrati.com/contact-us"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-cta-primary"
+                  >
+                    <span>Contact Us</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill="currentColor" d="M14 5l7 7m0 0l-7 7m7-7H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
         </main>
 
         <footer class="footer">
-          <p>
-            Powered by
-            <a href="https://qrati.com" target="_blank" rel="noopener noreferrer">Qrati</a>
-            · Embeddable live event photo galleries for Vue applications.
-          </p>
-          <div class="footer-links">
-            <a href="https://qrati.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-            <span class="footer-sep" aria-hidden="true">·</span>
-            <a href="https://qrati.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>
-            <span class="footer-sep" aria-hidden="true">·</span>
-            <button
-              type="button"
-              class="footer-cookie-btn"
-              @click="handleCookiePreferences"
-            >
-              Cookie Preferences
-            </button>
+          <div class="footer-brand">
+            <img src="https://assets.qrati.com/images/qrati-connect-logo-square.png" alt="Qrati Connect logo" referrerPolicy="no-referrer" />
+            <div>
+              <span class="footer-title"><span>Qrati</span> Connect</span>
+              <p>Elevate your event experience.</p>
+            </div>
           </div>
-          <p class="footer-copyright">
-            © {{ currentYear }} Qrati Labs. All rights reserved.
-          </p>
+          <div class="footer-meta">
+            <nav aria-label="Footer navigation">
+              <a href="https://qrati.com" target="_blank" rel="noopener noreferrer">qrati.com</a>
+              <a href="https://www.npmjs.com/package/@qratilabs/qrati-connect" target="_blank" rel="noopener noreferrer">npm</a>
+              <a :href="`https://github.com/${GITHUB_ORG}`" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="https://qrati.com/pricing" target="_blank" rel="noopener noreferrer">Pricing</a>
+              <button
+                type="button"
+                class="footer-cookie-btn"
+                data-cc="show-preferencesModal"
+                @click="handleCookiePreferences"
+              >
+                Cookie Preferences
+              </button>
+            </nav>
+            <p class="footer-note">© {{ currentYear }} Qrati Labs. All rights reserved.</p>
+          </div>
         </footer>
       </div>
     </div>
