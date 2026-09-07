@@ -240,6 +240,7 @@
                     var t = localStorage.getItem('qc-theme') ||
                         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
                     document.documentElement.setAttribute('data-theme', t);
+                    if (t === 'dark') document.documentElement.classList.add('cc--darkmode');
                 } catch (e) {}
             })();
         </script>

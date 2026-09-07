@@ -12,8 +12,18 @@ function loadTheme(): Theme {
 
 const state = reactive<{ theme: Theme }>({ theme: loadTheme() });
 
+function applyTheme(theme: Theme): void {
+  if (typeof document === 'undefined') return;
+  document.documentElement.setAttribute('data-theme', theme);
+  if (theme === 'dark') {
+    document.documentElement.classList.add('cc--darkmode');
+  } else {
+    document.documentElement.classList.remove('cc--darkmode');
+  }
+}
+
 if (typeof document !== 'undefined') {
-  document.documentElement.setAttribute('data-theme', state.theme);
+  applyTheme(state.theme);
 }
 
 function toggleTheme(): void {
@@ -21,9 +31,7 @@ function toggleTheme(): void {
   if (typeof localStorage !== 'undefined') {
     localStorage.setItem(THEME_KEY, state.theme);
   }
-  if (typeof document !== 'undefined') {
-    document.documentElement.setAttribute('data-theme', state.theme);
-  }
+  applyTheme(state.theme);
 }
 
 export function useTheme() {
