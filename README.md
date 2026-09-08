@@ -36,15 +36,6 @@ cp .env.example .env   # optional — sensible defaults are baked in
 pnpm dev
 ```
 
-## Configuration
-
-| Variable               | Description                                                       |
-| ---------------------- | ----------------------------------------------------------------- |
-| `VITE_ORGANIZATION_ID` | Your Qrati organization ID                                        |
-| `VITE_CDN_URL`         | CDN URL of the web-component bundle (`element/web.es.js`)          |
-| `VITE_GTM_ID`          | Google Tag Manager container ID (e.g. `GTM-XXXXXXX`)              |
-| `VITE_BASE_PATH`       | Base deployment path (defaults to `/connect/vue-example/`)         |
-
 ## Other integration methods
 
 - **React component** — `import { QratiConnect }` (see the React / Next / Preact examples).
