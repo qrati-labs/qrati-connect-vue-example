@@ -15,6 +15,7 @@ const state = reactive<{ theme: Theme }>({ theme: loadTheme() });
 function applyTheme(theme: Theme): void {
   if (typeof document === 'undefined') return;
   document.documentElement.setAttribute('data-theme', theme);
+  document.documentElement.classList.toggle('dark', theme === 'dark');
   if (theme === 'dark') {
     document.documentElement.classList.add('cc--darkmode');
   } else {
