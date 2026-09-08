@@ -1,5 +1,9 @@
 # Qrati Connect — Vue Example
 
+[![Qrati Connect — embeddable event photo galleries](public/qrati-connect-og.png)](https://qrati.com/connect)
+
+Build live event photo galleries into Vue applications with guest uploads, full-screen lightbox, emoji reactions, and photo-contest leaderboards. [Explore Qrati Connect](https://qrati.com/connect) or [view the live Vue example](https://qrati.com/connect/vue-example).
+
 Embeds [Qrati Connect](https://qrati.com) into a Vue 3 + Vite app using the
 framework-agnostic **web component** integration, with a host-controlled
 light/dark theme and a showcase of **custom cloud storage**.
