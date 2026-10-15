@@ -41,7 +41,7 @@ Keep denial as the only global default and grant solely from the resolved consen
 
 ## Pull request
 
-[PR #2](https://github.com/qrati-labs/qrati-connect-vue-example/pull/2) is open at head `ec94d9bedc1e40977d944ceaea10f81acd229693`, based on `c44c3dac59ae9b05b5433f0a89e7704016a4b8fa`. GitGuardian passed; Cloudflare Workers build was pending at the latest check read. The PR is mergeable. No merge or deploy performed.
+[PR #2](https://github.com/qrati-labs/qrati-connect-vue-example/pull/2) is open at head `8536ace` (docs finalization commit), based on `c44c3dac59ae9b05b5433f0a89e7704016a4b8fa`. GitGuardian passed on the initial code commit; check state for the final docs head is reported in the delivery receipt. The PR is mergeable. No merge or deploy performed.
 
 ## Sources
 
